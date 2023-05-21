@@ -35,13 +35,13 @@ class CustomUserViewSet(UserViewSet):
             subscription.is_valid(raise_exception=True)
             Follow.objects.create(user=user, author=author)
             return Response(subscription.data, status=status.HTTP_201_CREATED)
-
         if request.method == 'DELETE':
             subscription = get_object_or_404(Follow,
                                              user=user,
                                              author=author)
             subscription.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
     @action(
         detail=False,

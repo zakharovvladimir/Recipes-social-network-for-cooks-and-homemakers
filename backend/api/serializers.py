@@ -302,8 +302,7 @@ class RecipeWriteSerializer(ModelSerializer):
                 raise ValidationError('No ingredient ID found')
             if i['id'] in ids_seen:
                 raise ValidationError('Ingredients cannot be repeated')
-            else:
-                ids_seen.add(i['id'])
+            ids_seen.add(i['id'])
             if not i.get('amount'):
                 raise ValidationError('No ingredient quantity found')
             if not isinstance(i['amount'], (int, float)) or i['amount'] <= 0:
