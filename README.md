@@ -1,13 +1,13 @@
 [![foodgram_workflow](https://github.com/zakharovvladimir/foodgram-project-react/actions/workflows/main.yml/badge.svg)](https://github.com/zakharovvladimir/foodgram-project-react/actions/workflows/main.yml)
-# "Продуктовый помощник" (Foodgram)
+# Foodgram
 
-## [Description]
-## [Docker]
-## [DB]
-## [Commands]
-## [DB import]
-## [Information]
-## [Creator]
+## Description
+## Docker
+## DB
+## Commands
+## DB import
+## Information
+## Creator
 
 ---
 ## Description
