@@ -72,8 +72,7 @@ class RecipeViewSet(ModelViewSet):
                     ).exists():
                 return self.add_to(Favorite, request.user, pk)
             return self.delete_from(Favorite, request.user, pk)
-        elif request.method == 'DELETE':
-            return self.delete_from(Favorite, request.user, pk)
+        return self.delete_from(Favorite, request.user, pk)
 
     @action(
         detail=True,
