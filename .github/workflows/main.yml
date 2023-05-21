@@ -85,7 +85,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             sudo docker-compose stop
-            sudo docker-compose rm -f backend frontend
+            sudo docker-compose rm -f infra-web infra-frontend
             sudo docker image rm vladimirzakharov/infra-web vladimirzakharov/infra-frontend vladimirzakharov/nginx vladimirzakharov/postgres
             sudo docker-compose pull infra-web infra-frontend nginx postgres
             touch .env
