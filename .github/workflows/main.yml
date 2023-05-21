@@ -86,8 +86,8 @@ jobs:
           script: |
             sudo docker-compose stop
             sudo docker-compose rm -f backend frontend
-            sudo docker image rm vladimirzakharov/foodgram_backend vladimirzakharov/foodgram_frontend
-            sudo docker-compose pull backend frontend
+            sudo docker image rm vladimirzakharov/infra-web vladimirzakharov/infra-frontend vladimirzakharov/nginx vladimirzakharov/postgres
+            sudo docker-compose pull infra-web infra-frontend nginx postgres
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
