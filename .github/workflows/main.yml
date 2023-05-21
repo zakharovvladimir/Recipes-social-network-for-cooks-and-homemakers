@@ -52,7 +52,7 @@ jobs:
     with:
       push: true
       tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
-      file: frontend/Dockerfile
+      context: ./frontend
 
   deploy:
     name: Deploying to server
