@@ -71,7 +71,7 @@ jobs:
           script: |
             sudo docker-compose stop
             sudo docker-compose rm -f backend frontend
-            sudo docker image rm diablik666/foodgram_backend diablik666/foodgram_frontend
+            sudo docker image rm vladimirzakharov/foodgram_backend vladimirzakharov/foodgram_frontend
             sudo docker-compose pull backend frontend
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
