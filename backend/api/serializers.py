@@ -3,25 +3,15 @@ from django.db import transaction
 from django.utils.translation import gettext_lazy as _
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from drf_extra_fields.fields import Base64ImageField
-from recipes.models import IngredientInRecipe, Ingredients, Recipe, Tag
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import SerializerMethodField
 from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.serializers import (IntegerField, ModelSerializer,
                                         ReadOnlyField)
+
+from recipes.models import IngredientInRecipe, Ingredients, Recipe, Tag
 from users.models import Follow, User
-
-
-class CurrentUserDefaultId:
-    """Serves as a default value generator for a serializer field."""
-
-    def __call__(self, serializer_field):
-        """Call."""
-        user = serializer_field.context['request'].user
-        if not user.is_authenticated:
-            raise ValidationError("_('Is not authenticated')")
-        return user.id
 
 
 class CustomUserCreateSerializer(UserCreateSerializer):
@@ -88,11 +78,6 @@ class RecipeShortenedSerializer(ModelSerializer):
 class SubscribeSerializer(ModelSerializer):
     """Follow model subscribe serialization."""
 
-    id = ReadOnlyField()
-    email = ReadOnlyField()
-    username = ReadOnlyField()
-    first_name = ReadOnlyField()
-    last_name = ReadOnlyField()
     is_subscribed = SerializerMethodField()
     recipes = SerializerMethodField(method_name='get_recipes')
     recipes_count = SerializerMethodField(method_name='get_recipes_count')
@@ -102,6 +87,14 @@ class SubscribeSerializer(ModelSerializer):
         """SubscribeSerializer Meta."""
 
         model = Follow
+        read_only_fields = (
+            'email',
+            'id',
+            'username',
+            'first_name',
+            'last_name',
+            'author'
+            )
         fields = (
             'email',
             'id',
@@ -238,10 +231,14 @@ class RecipeReadSerializer(ModelSerializer):
             'cooking_time',
         )
 
-    def get_ingredients(self, obj):
+    def get_ingredients(self, obj, callback):
         """Get ingredients."""
         ingredients = IngredientInRecipe.objects.filter(recipe=obj)
-        return RevealIngredientsInRecipeSerializer(ingredients, many=True).data
+        serializer = RevealIngredientsInRecipeSerializer(
+            ingredients,
+            many=True)
+        data = serializer.data
+        return callback(data)
 
     def get_is_favorited(self, obj):
         """Get favorited recipe."""

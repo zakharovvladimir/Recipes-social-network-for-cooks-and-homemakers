@@ -82,6 +82,7 @@ class Tag(models.Model):
 
         verbose_name = _('Tag')
         verbose_name_plural = _('Tags')
+        ordering = ['name']
 
     def __str__(self):
         """Str."""
@@ -115,7 +116,7 @@ class Recipe(models.Model):
         null=False,
         help_text=_('Load Image'),
     )
-    cooking_time = models.IntegerField(
+    cooking_time = models.PositiveSmallIntegerField(
         blank=False,
         null=False,
         verbose_name=_('Time'),
