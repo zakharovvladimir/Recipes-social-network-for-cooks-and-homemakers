@@ -233,12 +233,9 @@ class RecipeReadSerializer(ModelSerializer):
     def get_ingredients(self, obj):
         """Get ingredients."""
         ingredients = IngredientInRecipe.objects.filter(recipe=obj)
-        serializer = RevealIngredientsInRecipeSerializer(
+        return RevealIngredientsInRecipeSerializer(
             ingredients,
-            many=True
-            )
-        data = serializer.data
-        return self.context['callback'](data)
+            many=True).data
 
     def get_is_favorited(self, obj):
         """Get favorited recipe."""
