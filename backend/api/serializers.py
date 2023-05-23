@@ -202,7 +202,7 @@ class RecipeReadSerializer(ModelSerializer):
     """Recipe model Read serialization."""
 
     tags = TagsSerializer(read_only=True, many=True)
-    ingredients = SerializerMethodField(method_name='get_ingredients')
+    ingredients = SerializerMethodField(method_name=lambda: 'get_ingredients')
     image = Base64ImageField()
     is_favorited = SerializerMethodField(read_only=True)
     is_in_shopping_cart = SerializerMethodField(read_only=True)
