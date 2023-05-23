@@ -202,7 +202,7 @@ class RecipeReadSerializer(ModelSerializer):
     """Recipe model Read serialization."""
 
     tags = TagsSerializer(read_only=True, many=True)
-    ingredients = SerializerMethodField(method_name=lambda: 'get_ingredients')
+    ingredients = SerializerMethodField(method_name='get_ingredients')
     image = Base64ImageField()
     is_favorited = SerializerMethodField(read_only=True)
     is_in_shopping_cart = SerializerMethodField(read_only=True)
@@ -230,14 +230,12 @@ class RecipeReadSerializer(ModelSerializer):
             'cooking_time',
         )
 
-    def get_ingredients(self, obj, callback):
+    def get_ingredients(self, obj):
         """Get ingredients."""
         ingredients = IngredientInRecipe.objects.filter(recipe=obj)
-        serializer = RevealIngredientsInRecipeSerializer(
-            ingredients,
-            many=True)
+        serializer = RevealIngredientsInRecipeSerializer(ingredients, many=True)
         data = serializer.data
-        return callback(data)
+        return self.context['callback'](data)
 
     def get_is_favorited(self, obj):
         """Get favorited recipe."""
