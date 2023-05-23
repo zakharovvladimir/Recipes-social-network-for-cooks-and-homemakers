@@ -98,7 +98,25 @@ jobs:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
-            sudo docker-compose up -d
+            sudo docker-compose up -d --build
+            docker-compose exec web python manage.py makemigrations users
+            docker-compose exec web python manage.py migrate users
+            docker-compose exec web python manage.py makemigrations
+            docker-compose exec web python manage.py migrate
+            docker-compose exec web python manage.py makemigrations recipes
+            docker-compose exec web python manage.py migrate recipes
+            docker-compose exec web python manage.py makemigrations users
+            docker-compose exec web python manage.py migrate users
+            docker-compose exec web python manage.py collectstatic --no-input
+            docker-compose exec web python manage.py import
+
+            ## echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='${{ secrets.ADMIN_USERNAME }}').exists() or User.objects.create_superuser('${{ secrets.ADMIN_USERNAME }}', '${{ secrets.ADMIN_USERNAME }}@admin.zz', '${{ secrets.ADMIN_PASSWORD }}')" | sudo docker-compose exec -T backend python manage.py shell
+            # echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', 'admin@admin.zz', '123456')" | sudo docker-compose exec -T backend python manage.py shell
+            # sudo docker-compose exec backend python manage.py load_ingredients
+            # sudo docker-compose exec backend python manage.py load_tags
+            # sudo docker-compose exec backend python manage.py collectstatic --no-input
+            # sudo docker system prune -af
+            # sudo docker volume prune -f
 
   send_message:
     name: Sending Telegram message

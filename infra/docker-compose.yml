@@ -8,9 +8,7 @@ services:
       - ./.env
     restart: always
   web:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: vladimirzakharov/backend:latest
     ports:
      - "8000:8000"
     restart: always
@@ -22,9 +20,7 @@ services:
     env_file:
       - ./.env
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: vladimirzakharov/frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
   nginx:
