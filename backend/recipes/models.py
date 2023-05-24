@@ -39,7 +39,7 @@ class Ingredients(models.Model):
                 fields=('name', 'measurement_unit'),
                 name='items_unique'),
         )
-        ordering = ('-id',)
+        ordering = ('name',)
         verbose_name = _('Ingredient')
         verbose_name_plural = _('Ingredients')
 
@@ -117,6 +117,7 @@ class Recipe(models.Model):
         help_text=_('Load Image'),
     )
     cooking_time = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1)],
         blank=False,
         null=False,
         verbose_name=_('Time'),
