@@ -99,6 +99,7 @@ class SubscribeSerializer(ModelSerializer):
             'is_subscribed',
             'recipes',
             'recipes_count',
+            'author'
         )
 
     def validate(self, data):
