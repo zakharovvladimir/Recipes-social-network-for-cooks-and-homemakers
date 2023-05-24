@@ -311,6 +311,14 @@ class RecipeWriteSerializer(ModelSerializer):
             raise ValidationError(_('Tag is not unique'))
         return value
 
+    def validate_cooking_time(value):
+        """Check value cooking_time."""
+        if value <= 0:
+            raise ValidationError(
+                'Cooking time should be more than 0'
+            )
+        return value
+
     @transaction.atomic
     def ingredients_amounts(self, ingredients, recipe):
         """Create ingredients amount."""

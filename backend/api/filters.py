@@ -43,6 +43,7 @@ class IngredientFilter(FilterSet):
     """Defines a filter that filters instances of the Ingredients model."""
 
     name = filters.CharFilter(field_name='name', lookup_expr='istartswith')
+    ordering = filters.OrderingFilter(fields=('name',))
 
     class Meta:
         """Defines the model to be filtered."""
