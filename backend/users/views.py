@@ -1,6 +1,4 @@
 """Users views.py."""
-from api.pagination import CustomPagination
-from api.serializers import CustomUserSerializer, SubscribeSerializer
 from django.shortcuts import get_object_or_404
 from djoser import utils
 from djoser.views import TokenDestroyView, UserViewSet
@@ -8,6 +6,9 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
+from api.pagination import CustomPagination
+from api.serializers import CustomUserSerializer, SubscribeSerializer
 
 from .models import Follow, User
 
