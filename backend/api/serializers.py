@@ -179,8 +179,6 @@ class RevealIngredientsInRecipeSerializer(ModelSerializer):
             'amount',
         )
 
-    ordering = ['name']
-
 
 class TagsSerializer(ModelSerializer):
     """Tag model serialization."""
