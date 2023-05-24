@@ -311,7 +311,7 @@ class RecipeWriteSerializer(ModelSerializer):
             raise ValidationError(_('Tag is not unique'))
         return value
 
-    def validate_cooking_time(value):
+    def validate_cooking_time(self, value):
         """Check value cooking_time."""
         if value <= 0:
             raise ValidationError(
