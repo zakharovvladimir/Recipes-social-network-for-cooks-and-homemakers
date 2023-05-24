@@ -1,6 +1,7 @@
 """Filters.py."""
 from django.contrib.auth import get_user_model
 from django_filters.rest_framework import BooleanFilter, FilterSet, filters
+
 from recipes.models import Ingredients, Recipe, Tag
 
 User = get_user_model()

@@ -3,13 +3,14 @@ from django.db import transaction
 from django.utils.translation import gettext_lazy as _
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from drf_extra_fields.fields import Base64ImageField
-from recipes.models import IngredientInRecipe, Ingredients, Recipe, Tag
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.fields import SerializerMethodField
 from rest_framework.relations import PrimaryKeyRelatedField
 from rest_framework.serializers import (IntegerField, ModelSerializer,
                                         ReadOnlyField)
+
+from recipes.models import IngredientInRecipe, Ingredients, Recipe, Tag
 from users.models import Follow, User
 
 
@@ -88,6 +89,8 @@ class SubscribeSerializer(ModelSerializer):
     author = CustomUserSerializer(read_only=True)
 
     class Meta:
+        """SubscribeSerializer Meta."""
+
         model = Follow
         fields = (
             'email',

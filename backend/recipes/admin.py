@@ -1,6 +1,7 @@
 """Admin.py."""
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from django_filters.rest_framework import CharFilter
 
 from .models import (Cart, Favorite, IngredientInRecipe, Ingredients, Recipe,
                      Tag)
@@ -10,7 +11,7 @@ class IngredientsAdmin(admin.ModelAdmin):
     """Ingredients model in admin."""
 
     list_display = ('name', 'measurement_unit',)
-    list_filter = ('name',)
+    list_filter = ('name', ('name', CharFilter(lookup_expr='istartswith')))
     search_fields = ('name',)
     empty_value_display = _('-empty-')
 
