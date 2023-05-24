@@ -169,7 +169,6 @@ class IngredientInRecipe(models.Model):
 
         verbose_name = _("Recipe's ingredients")
         verbose_name_plural = _("Recipes' ingredients")
-        ordering = ['name']
 
     def __str__(self):
         """Str."""
