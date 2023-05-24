@@ -87,15 +87,14 @@ class SubscribeSerializer(ModelSerializer):
 
         model = Follow
         read_only_fields = (
-            'email',
             'id',
             'username',
             'first_name',
             'last_name',
+            'email',
             'author'
             )
         fields = (
-            'email',
             'id',
             'username',
             'first_name',
