@@ -42,7 +42,7 @@ class RecipeFilter(FilterSet):
 class IngredientFilter(FilterSet):
     """Defines a filter that filters instances of the Ingredients model."""
 
-    name = filters.CharFilter(lookup_expr='istartswith')
+    name = filters.CharFilter(field_name='name', lookup_expr='istartswith')
 
     class Meta:
         """Defines the model to be filtered."""

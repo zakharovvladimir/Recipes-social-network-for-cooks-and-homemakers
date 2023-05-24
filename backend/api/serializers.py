@@ -158,6 +158,8 @@ class IngredientsSerializer(ModelSerializer):
             'measurement_unit',
         )
 
+        ordering = ['name']
+
 
 class RevealIngredientsInRecipeSerializer(ModelSerializer):
     """IngredientsInRecipe model serialization."""
@@ -176,6 +178,8 @@ class RevealIngredientsInRecipeSerializer(ModelSerializer):
             'measurement_unit',
             'amount',
         )
+
+    ordering = ['name']
 
 
 class TagsSerializer(ModelSerializer):
@@ -294,7 +298,7 @@ class RecipeWriteSerializer(ModelSerializer):
             ids_seen.add(i['id'])
             if not i.get('amount'):
                 raise ValidationError('No ingredient quantity found')
-            if not isinstance(i['amount'], (int, float)) or i['amount'] <= 0:
+            if not isinstance(i['amount'], (int, float)) or i['amount'] <= 1:
                 raise ValidationError('Qty value should be a nmb more than 0')
         return ingredients
 
