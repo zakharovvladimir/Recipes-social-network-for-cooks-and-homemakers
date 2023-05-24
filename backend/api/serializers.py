@@ -77,24 +77,24 @@ class RecipeShortenedSerializer(ModelSerializer):
 class SubscribeSerializer(ModelSerializer):
     """Follow model subscribe serialization."""
 
+    id = ReadOnlyField()
+    email = ReadOnlyField()
+    username = ReadOnlyField()
+    first_name = ReadOnlyField()
+    last_name = ReadOnlyField()
     is_subscribed = SerializerMethodField()
     recipes = SerializerMethodField(method_name='get_recipes')
     recipes_count = SerializerMethodField(method_name='get_recipes_count')
     author = CustomUserSerializer(read_only=True)
 
     class Meta:
-        """SubscribeSerializer Meta."""
-
         model = Follow
-        read_only_fields = (
+        fields = (
+            'email',
             'id',
             'username',
             'first_name',
             'last_name',
-            'email',
-            )
-        fields = (
-            'id',
             'is_subscribed',
             'recipes',
             'recipes_count',
