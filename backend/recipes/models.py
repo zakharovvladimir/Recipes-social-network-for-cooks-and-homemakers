@@ -26,7 +26,7 @@ class Ingredients(models.Model):
 
     @classmethod
     def create(cls, **kwargs):
-        """Create ingredient."""
+        """Create ingredients."""
         ingredient = cls(**kwargs)
         ingredient.save()
         return ingredient
