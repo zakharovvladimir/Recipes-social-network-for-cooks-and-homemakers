@@ -3,6 +3,9 @@ name: Foodgram Workflow
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - '**/README.md'
+      - '**/.github/workflows/main.yml
 
 jobs:
   tests:
