@@ -1,4 +1,4 @@
-# Foodgram
+# Recipes social network
 
 ## Description
 ## Docker
@@ -11,7 +11,7 @@
 ---
 ## Description
 
-The Foodgram project:
+The Recipes social network project:
   - Create and manage recipes
   - View recipes of users
   - Add recipes of users in Favorites and Cart
