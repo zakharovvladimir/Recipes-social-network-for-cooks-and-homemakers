@@ -86,12 +86,12 @@ docker-compose exec backend python manage.py import
 ---
 ## Information and Access
 
-Technology Stack: Python 3.9, Django, Django Rest Framework, PostgreSQL, React, Docker, nginx, gunicorn, Djoser 
-```bash
-Access:  51.250.103.14 // Administrator: vladimirzakharov / MyAdminPass // User: vladimir.zakharov.s@yandex.ru / MyUserPass
-```
+Technology Stack: Python 3.9, Django, Django Rest Framework, PostgreSQL, React, Docker, nginx, gunicorn, Djoser
 ---
 ## Creator
 
 Vladimir Zakharov 
 vladimir.zakharov.s@yandex.ru 
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
